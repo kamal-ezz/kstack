@@ -1,0 +1,85 @@
+---
+name: ramsay
+description: >-
+  Review code, diffs, commits, or PRs for defects, regressions, security risks,
+  and maintainability problems. Use when asked to review changes, check a PR, or
+  assess code quality. Not for fix-only requests or explanation-only questions.
+---
+
+# Ramsay
+
+Find problems worth fixing and explain them with evidence. Prioritize correctness
+and user impact over stylistic preferences. A useful review can have no findings.
+
+## Establish the review target
+
+Read project instructions and identify the requested files, diff, commits, or PR.
+Inspect repository state before selecting a diff. For a branch or PR, establish
+its intended base and compare from the merge base; for uncommitted work, include
+staged, unstaged, and relevant untracked files within scope. Do not mix unrelated
+changes into the review. Ask only if an ambiguous target materially affects it.
+
+Read the change and enough surrounding code, callers, tests, and configuration to
+understand its behavior. Establish the intended behavior from the user's request,
+PR description, linked issue, and commit messages, then check the change against
+it and against existing patterns; flag behavior that differs from what the
+description claims. Distinguish newly introduced defects from pre-existing issues;
+for a general code audit, follow the requested scope rather than requiring a diff.
+
+## Review behavior and clarity
+
+Follow affected data and control flow. Investigate the risks the change actually
+creates or touches:
+
+- Incorrect results, missing failure paths, and behavior changes at call sites.
+- Input validation, authorization, unsafe sinks, and secret handling across trust
+  boundaries.
+- Shared-state races, retries, duplicate effects, ordering, and cancellation.
+- Persistence changes, compatibility, migrations, and partial failures.
+- Excessive queries, work, or memory as inputs and traffic grow.
+- Missing user-facing states, inaccessible interactions, or misleading feedback.
+- Missing or weak tests: changed behavior with no test, or tests that would still
+  pass if the behavior broke.
+- Duplication: logic that re-implements an existing helper or pattern, where the
+  copies can drift apart.
+- Readability that obscures behavior: confusing names, tangled control flow, or
+  abstractions that make changes error-prone. Explain the concrete maintenance
+  cost rather than asserting a personal style preference.
+
+Verify suspected issues against the implementation. Search for protections before
+claiming they are absent. Use authoritative version-matched docs when an API's
+behavior is uncertain. Do not invent constraints, workloads, or requirements to
+justify a finding.
+
+Run focused existing checks or a minimal reproducer when it would resolve a
+material uncertainty and is safe within the authorized environment. Do not mutate
+production data or run tests with unknown external effects. Avoid changing the
+working tree for a review; if creating a reproducer, keep it outside project files.
+Passing tests do not establish that untested paths are correct.
+
+## Report actionable findings
+
+Lead with findings, ordered by impact. Follow any required project or host output
+schema. Otherwise, each finding should include:
+
+- **Location**: a file link and the smallest useful line span or symbol.
+- **Problem and trigger**: what fails and under which concrete conditions.
+- **Impact and evidence**: the consequence and the code path, test, or contract
+  that supports it.
+- **Direction**: a concise correction when one is clear; avoid implementing it
+  unless requested.
+
+Separate observed defects from unresolved questions. Use severity labels only
+with a clear meaning: critical for urgent severe exposure or widespread failure,
+high for significant broken behavior, medium for narrower defects, and low for
+minor concrete issues. Do not inflate severity or repeat one root cause as many
+findings. Keep general suggestions separate from defects and omit trivial nits
+unless requested.
+
+Close with a brief account of checks run, which parts you reviewed in depth and
+which you skimmed or skipped (such as generated files, lockfiles, or vendored
+code), and important limitations. If there are no actionable findings, say so
+directly and identify any material verification gaps. Do not equate a clean
+review with proof of correctness. Return the review in chat unless the user
+explicitly asks to publish it or post comments. If the user asked you to review
+and fix, finish and report the review first, then fix only confirmed findings.

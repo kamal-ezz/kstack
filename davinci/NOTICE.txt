@@ -1,0 +1,8 @@
+Davinci is adapted from Anthropic's frontend-design skill.
+Source: https://github.com/anthropics/skills/blob/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md
+Upstream license: Apache License 2.0 (see LICENSE.txt).
+
+Modifications: renamed and rewritten for this skill collection; clarified when
+it applies, respect for existing design systems, proportional planning,
+implementation boundaries, and verification requirements; added concrete
+accessibility, theming, and performance targets.
