@@ -6,3 +6,4 @@ Modifications: renamed and rewritten for this skill collection; clarified when
 it applies, respect for existing design systems, proportional planning,
 implementation boundaries, and verification requirements; added concrete
 accessibility, theming, and performance targets.
+Further modifications: visual direction now follows resolution of consequential product decisions.

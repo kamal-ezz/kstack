@@ -31,6 +31,13 @@ proposal does not require implementation.
 
 ## Ground the design
 
+Start visual direction after consequential product decisions are settled: target
+platform, audience, and primary task. When these are unresolved, clarify the
+choices that affect the design with a recommendation and wait before choosing
+a visual treatment. Follow Chimp's scope decisions on joint tasks; do not invent
+features or settle an open platform choice through a mockup. Use established
+context without asking again, and choose routine visual details autonomously.
+
 Identify the product, audience, primary action, and content before choosing a look.
 Use the user's brief, references, existing interface, and repository to establish
 constraints. Ask only when a missing decision would materially change the result;

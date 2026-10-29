@@ -71,6 +71,14 @@ with functional checks here and visual checks in Davinci.
 ## Workflow
 
 ### 1. Scope it and define done
+For a new project with no established platform or stack, resolve choices that
+materially change the implementation before committing to an approach or writing
+code. For example, a game could run in a browser, terminal, or desktop app. Ask
+one focused question with a recommendation when the brief leaves that choice
+open; wait for the answer before dependent implementation or visual design.
+When existing context settles these choices or the user delegates them, proceed;
+do not reopen settled decisions or turn routine setup into an approval gate.
+
 Identify all requested outcomes and track independent goals through completion.
 Do not silently narrow the task to its first deliverable. Split work into useful
 steps; complete the authorized scope unless the user chooses a narrower one.
@@ -95,7 +103,9 @@ behavior; a simple edit may need just one expected outcome and a check for it.
 
 ### 2. Learn the project
 Read the instruction files, find how to run the checks, and search for similar
-implementations to follow. If the project is under version control, check its
+implementations to follow. Use declared tool capabilities and scoped project
+inspection to establish what is available. Do not search unrelated filesystem
+locations for optional integrations; use available tools or state the limitation. If the project is under version control, check its
 state, record the starting commit, and follow its branch and worktree
 conventions. Preserve unrelated uncommitted changes and work around them; ask
 only if they conflict with the requested work. Do not push, rebase, or discard
@@ -160,6 +170,9 @@ without expanding the task into an unrelated redesign.
 ### 6. Verify for real
 Choose checks that could expose plausible failures introduced by the change.
 Run the project's required gates and the relevant checks after the last edit.
+Check each verification command's exit status and output. Run checks separately
+or compose them so a failure remains visible in the overall status; a later
+successful command must not mask an earlier failure.
 Exercise the actual usage path when needed to establish behavior; a documentation
 or configuration edit may be adequately checked by inspection and validation.
 Do not introduce new test tooling merely to fill a checklist.
@@ -191,6 +204,10 @@ repeated attempts fail, stop speculative edits, revisit assumptions, and change
 how you investigate. Involve the user when missing information, access, or a
 consequential design decision blocks progress, rather than after a fixed number
 of attempts.
+
+Before reporting, inspect the final changed code for readable names, conventional
+formatting, focused responsibilities, and understandable state transitions. Fix
+clarity problems within scope; passing tests alone does not establish readability.
 
 ### 7. Report
 Keep it short and technical:
