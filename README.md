@@ -1,10 +1,10 @@
 # Personal skills
 
-- **chimp** — implementation and functional verification
+- **ritchie** — implementation and functional verification
 - **davinci** — frontend visual design
 - **ramsay** — code review
-- **boom** — Git and pull request operations
-- **poshanka** — technical explanations
+- **linus** — Git and pull request operations
+- **feynman** — technical explanations
 
 ## Install
 

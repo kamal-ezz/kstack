@@ -23,7 +23,7 @@ revision and modification details are in [NOTICE.txt](NOTICE.txt).
 ## Responsibility
 
 Own visual direction and presentation: composition, typography, color, spacing,
-responsive layout, motion, imagery, and interface copy. For code changes, Chimp
+responsive layout, motion, imagery, and interface copy. For code changes, Ritchie
 owns architecture, implementation quality, state logic, semantic and keyboard
 accessibility, and functional checks. Apply this skill's visual decisions within that workflow;
 do not duplicate the engineering plan, functional checks, or report. A design-only
@@ -34,7 +34,7 @@ proposal does not require implementation.
 Start visual direction after consequential product decisions are settled: target
 platform, audience, and primary task. When these are unresolved, clarify the
 choices that affect the design with a recommendation and wait before choosing
-a visual treatment. Follow Chimp's scope decisions on joint tasks; do not invent
+a visual treatment. Follow Ritchie's scope decisions on joint tasks; do not invent
 features or settle an open platform choice through a mockup. Use established
 context without asking again, and choose routine visual details autonomously.
 
@@ -116,7 +116,7 @@ unrelated behavior. Implement only when requested; otherwise deliver the proposa
 Design the presentation of the functional states: loading, empty, error, success,
 and disabled. Make focus visible, controls distinguishable, and layouts usable
 across viewports without hiding essential content or actions. Make touch targets
-at least 24×24 CSS pixels, and about 44 for primary touch controls. Chimp covers
+at least 24×24 CSS pixels, and about 44 for primary touch controls. Ritchie covers
 state logic, semantic elements, keyboard behavior, and functional verification.
 
 Keep the interface fast. Load only the font weights you use, with `font-display`
@@ -140,5 +140,5 @@ corrections and recheck affected behavior rather than repeatedly redesigning
 without evidence.
 
 Include the design decisions, visual checks, and unverified presentation details
-in the task's report. Visual inspection does not replace Chimp's functional checks
+in the task's report. Visual inspection does not replace Ritchie's functional checks
 or expand publishing permission.

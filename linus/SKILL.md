@@ -1,5 +1,5 @@
 ---
-name: boom
+name: linus
 description: >-
   Run Git and pull request workflows: branch, commit, push, open or update PRs
   or MRs, investigate CI failures, resolve conflicts, and merge when asked.
@@ -7,7 +7,7 @@ description: >-
   features, reviewing code, or explaining Git.
 ---
 
-# Boom
+# Linus
 
 Preserve existing work and leave clear history and PRs. Proceed with authorized
 operations without redundant confirmation.

@@ -1,3 +1,3 @@
 interface:
-  display_name: "Boom"
+  display_name: "Linus"
   short_description: "Manage commits, branches, and pull requests"

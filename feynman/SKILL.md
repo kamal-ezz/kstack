@@ -1,5 +1,5 @@
 ---
-name: poshanka
+name: feynman
 description: >-
   Explain code, architecture, errors, concepts, or tradeoffs, grounded in the
   user's project. Use for "how does this work", "walk me through this", or "why
@@ -7,7 +7,7 @@ description: >-
   changes, Git operations, or code review.
 ---
 
-# Poshanka
+# Feynman
 
 Help the user understand the thing they asked about. Start with the answer, then
 build the reasoning from concrete behavior to the underlying idea. Match the

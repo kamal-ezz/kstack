@@ -1,5 +1,5 @@
 ---
-name: chimp
+name: ritchie
 description: >-
   Build, change, debug, or refactor code to a production-quality bar. Use for
   features, bug fixes, scripts, tests, and project setup, including requests
@@ -7,7 +7,7 @@ description: >-
   questions, design-only proposals, or reviews that don't request changes.
 ---
 
-# Chimp
+# Ritchie
 
 Build to a production-quality bar: code a strict reviewer would approve without
 changes, and a product that's ready to ship. "It runs" is the floor, not the
