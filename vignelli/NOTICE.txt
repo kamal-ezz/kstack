@@ -1,4 +1,4 @@
-Davinci is adapted from Anthropic's frontend-design skill.
+Vignelli is adapted from Anthropic's frontend-design skill.
 Source: https://github.com/anthropics/skills/blob/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md
 Upstream license: Apache License 2.0 (see LICENSE.txt).
 
@@ -7,4 +7,5 @@ it applies, respect for existing design systems, proportional planning,
 implementation boundaries, and verification requirements; added concrete
 accessibility, theming, and performance targets.
 Further modifications: visual direction now follows resolution of consequential product decisions.
-Updated implementation-skill references to Ritchie.
+Renamed from Davinci; implementation-skill references now point to Hamilton.
+Added explicit type scale, spacing scale, and layout grid guidance.

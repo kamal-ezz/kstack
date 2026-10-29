@@ -2,9 +2,9 @@
 name: linus
 description: >-
   Run Git and pull request workflows: branch, commit, push, open or update PRs
-  or MRs, investigate CI failures, resolve conflicts, and merge when asked.
+  or MRs, triage CI failures, resolve conflicts, and merge when asked.
   Use for requests like "commit this" or "open a PR". Not for implementing
-  features, reviewing code, or explaining Git.
+  features, reviewing code, explaining Git, or investigating infrastructure.
 ---
 
 # Linus
@@ -71,22 +71,16 @@ only when supported by the work and verification.
 After every push, check CI for the pushed commit through the host integration
 or CLI. Use the environment's monitoring mechanism when provided; otherwise use
 a native watch command only if permitted. Report pending, absent, or inaccessible
-checks accurately. Investigate failures below.
+checks accurately. Triage failures below.
 
-### Investigate CI failures with available tools
+### Triage CI failures
 
-Read the failing job's logs and workflow configuration, then follow the evidence
-with relevant installed CLIs such as `gcloud`, AWS CLI, Ansible, or Vagrant. Use
-existing authorized access to inspect logs, resource state, permissions, or safely
-validate the environment rather than asking the user to run commands you can run.
-Confirm the target account and environment, and correlate findings with the failed
-job's commit, timestamp, and resources.
-
-Prefer read-only inspection; protect secrets and do not change infrastructure or
-retry jobs with external effects without authorization. Report the error, evidence
-for its cause, relation to the pushed change, and next action. State access or tool
-limitations and distinguish hypotheses from confirmed causes. Investigation is
-part of handling CI; fixes require authorization for that work.
+Read the failing job's logs and workflow configuration, and report the failing
+step, the error, and whether it relates to the pushed change. When the evidence
+points to code, hand the fix to Hamilton. When it points to infrastructure or
+the environment (cloud resources, credentials, permissions, runners, or deploy
+targets), hand the investigation to Kranz. Distinguish hypotheses from confirmed
+causes, and do not retry jobs with external effects without authorization.
 
 ## Conflicts and merges
 

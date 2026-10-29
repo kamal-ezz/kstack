@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eae7dc"><title>Snake — Pocket Arcade</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main class="arcade">
+<header><a class="brand" href="./" aria-label="Pocket Arcade home"><span class="brand-icon">▦</span> POCKET ARCADE</a><span class="edition">NO. 001 / THE ORIGINAL</span></header>
+<section class="intro"><div><p class="eyebrow">A LITTLE BREAK. A CLASSIC GAME.</p><h1>Snake<span>.</span></h1></div><p class="tagline">One more bite.<br>One more personal best.</p></section>
+<section class="console" aria-label="Snake game">
+<div class="console-top"><span class="live-label"><i></i> <span id="status">READY TO PLAY</span></span><div class="scores"><div><span>SCORE</span><strong id="score">000</strong></div><div><span>PERSONAL BEST</span><strong id="best">000</strong></div></div></div>
+<div class="play-area"><canvas id="board" width="600" height="600" aria-label="Snake playing field. Use arrow keys or W A S D to move."></canvas><div class="overlay" id="overlay"><span class="overlay-icon">↳</span><h2 id="message">Small snake.<br>Big appetite.</h2><p id="hint">Eat the fruit. Find your rhythm.<br>Try to stay in one piece.</p><button id="start">Let’s play <span>↗</span></button><small id="shortcut">or press Space to start</small></div></div>
+<div class="console-bottom"><span><span class="food-dot"></span> EAT. GROW. REPEAT.</span><button id="pause" disabled aria-label="Pause game">Ⅱ <span>Pause</span></button></div>
+</section>
+<aside class="settings"><div class="speed"><span class="label">PICK YOUR PACE</span><div class="segmented" aria-label="Game speed"><button data-speed="chill" aria-pressed="false">Chill</button><button data-speed="classic" aria-pressed="true">Classic</button><button data-speed="fast" aria-pressed="false">Fast</button></div></div><div class="instructions"><span class="label">THE SHORT VERSION</span><span><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> or <b>W A S D</b> to move</span><span><kbd>Space</kbd> to pause <span class="separator">/</span> <kbd>R</kbd> to restart</span></div></aside>
+<div class="touch-controls" aria-label="Direction controls"><button data-direction="up" aria-label="Move up">↑</button><div><button data-direction="left" aria-label="Move left">←</button><button data-direction="down" aria-label="Move down">↓</button><button data-direction="right" aria-label="Move right">→</button></div></div>
+<footer><span>LESS SCROLLING, MORE SNAKE.</span><span>Made for the love of the game <span class="footer-spark">✳</span></span></footer>
+<p id="announcement" class="sr-only" aria-live="polite"></p>
+</main><script type="module" src="game.js"></script>
+</body></html>

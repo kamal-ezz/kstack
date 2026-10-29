@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {createGame,step,placeFood,canTurn,SIZE} from './engine.js';
+test('moves forward without changing length',()=>{const s=step(createGame());assert.deepEqual(s.snake[0],{x:9,y:10});assert.equal(s.snake.length,4);});
+test('food grows snake and increases score',()=>{const s=step({...createGame(),food:{x:9,y:10}});assert.equal(s.score,10);assert.equal(s.snake.length,5);assert.ok(!s.snake.some(p=>p.x===s.food.x&&p.y===s.food.y));});
+test('cannot reverse direction',()=>{assert.equal(canTurn('right','left'),false);assert.equal(step(createGame(),'left').direction,'right');});
+test('wall collision ends game',()=>{assert.equal(step({...createGame(),snake:[{x:19,y:10}]}).ended,true);});
+test('body collision ends game',()=>{const s={...createGame(),snake:[{x:5,y:5},{x:5,y:6},{x:6,y:6},{x:6,y:5},{x:7,y:5}]};assert.equal(step(s).ended,true);});
+test('can move into vacated tail',()=>{const s={...createGame(),snake:[{x:5,y:5},{x:5,y:6},{x:6,y:6},{x:6,y:5}]};assert.equal(step(s).ended,false);});
+test('full board has no food position',()=>{const body=Array.from({length:SIZE*SIZE},(_,i)=>({x:i%SIZE,y:Math.floor(i/SIZE)}));assert.equal(placeFood(body),null);});

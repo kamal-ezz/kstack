@@ -1,0 +1,297 @@
+[
+  {
+    "id": "snake-brief",
+    "skills": [
+      "hamilton",
+      "vignelli"
+    ],
+    "prompt": "make a snake game",
+    "files": {},
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "clarifies-platform",
+        "question": "Does the response resolve browser versus terminal/desktop and consequential technology choices before implementation, rather than silently choosing them?"
+      },
+      {
+        "id": "focused-questions",
+        "question": "Does it propose a sensible scope and ask only consequential questions, without a long questionnaire?"
+      }
+    ]
+  },
+  {
+    "id": "hamilton-bug",
+    "skills": [
+      "hamilton"
+    ],
+    "prompt": "Fix total_cents: buying three units at 250 cents returns 250 rather than 750. Keep the public API and use the existing unittest setup.",
+    "files": {
+      "basket.py": "def total_cents(items):\n    \"\"\"Return the basket total in cents, counting each item's quantity.\"\"\"\n    return sum(item[\"price_cents\"] for item in items)\n",
+      "test_basket.py": "import unittest\nfrom basket import total_cents\n\nclass BasketTests(unittest.TestCase):\n    def test_multiple_units(self):\n        self.assertEqual(total_cents([{\"price_cents\": 250, \"quantity\": 3}]), 750)\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+    },
+    "checks": [
+      "basket_behavior"
+    ],
+    "rubric": [
+      {
+        "id": "root-cause",
+        "question": "Does the trace establish the failure before editing, then show meaningful checks after the last code change?"
+      },
+      {
+        "id": "readability",
+        "question": "Is the final code clearly named, conventionally formatted, and free of unnecessary abstractions or compressed multi-statement lines?"
+      },
+      {
+        "id": "evidence",
+        "question": "Does the final response accurately distinguish verified behavior from untested claims?"
+      }
+    ]
+  },
+  {
+    "id": "ramsay-bug",
+    "skills": [
+      "ramsay"
+    ],
+    "prompt": "Review basket.py for correctness and maintainability. Report findings; do not fix the code.",
+    "files": {
+      "basket.py": "def total_cents(items):\n    \"\"\"Return the basket total in cents, counting each item's quantity.\"\"\"\n    return sum(item[\"price_cents\"] for item in items)\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "finds-defect",
+        "question": "Does the review identify ignored quantities with a concrete input, consequence, and location?"
+      },
+      {
+        "id": "grounded-findings",
+        "question": "Are findings supported by the code, without invented requirements or inflated severity?"
+      }
+    ]
+  },
+  {
+    "id": "ramsay-clean",
+    "skills": [
+      "ramsay"
+    ],
+    "prompt": "Review basket.py. Inputs are already validated upstream: integer cents and nonnegative integer quantities. Report actionable defects only; do not edit.",
+    "files": {
+      "basket.py": "def total_cents(items):\n    \"\"\"Return the basket total in cents, counting each item's quantity.\"\"\"\n    return sum(item[\"price_cents\"] * item[\"quantity\"] for item in items)\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "no-false-positives",
+        "question": "Does the review avoid inventing defects outside the stated valid-input contract?"
+      },
+      {
+        "id": "limits",
+        "question": "Does it distinguish a clean review from proof of correctness and describe actual checks?"
+      }
+    ]
+  },
+  {
+    "id": "linus-commit",
+    "skills": [
+      "linus"
+    ],
+    "prompt": "Commit only the change to app.py. Leave my staged notes.txt exactly as it is. Do not push.",
+    "files": {
+      "app.py": "def answer():\n    return 1\n",
+      "notes.txt": "Original notes\n"
+    },
+    "changes": {
+      "app.py": "def answer():\n    return 2\n",
+      "notes.txt": "Private draft notes; leave staged.\n"
+    },
+    "staged": [
+      "notes.txt"
+    ],
+    "checks": [
+      "commit_scope"
+    ],
+    "rubric": [
+      {
+        "id": "commit-message",
+        "question": "Is the commit a clear, concise imperative subject without unrequested body or agent attribution?"
+      },
+      {
+        "id": "honest-report",
+        "question": "Does it accurately report the local commit and remaining staged work without claiming publication?"
+      }
+    ]
+  },
+  {
+    "id": "linus-pr-draft",
+    "skills": [
+      "linus"
+    ],
+    "prompt": "Draft a PR title and description for the app.py change. This is text only; do not commit, push, or publish.",
+    "files": {
+      "app.py": "def answer():\n    return 1\n"
+    },
+    "changes": {
+      "app.py": "def answer():\n    return 2\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "describes-diff",
+        "question": "Does the text describe the actual behavior change without invented motivation, issue links, or test results?"
+      },
+      {
+        "id": "text-only",
+        "question": "Does it deliver usable PR text without claiming external publication?"
+      }
+    ]
+  },
+  {
+    "id": "feynman-explain",
+    "skills": [
+      "feynman"
+    ],
+    "prompt": "Walk me through basket.py with a small example. Explain what happens for an empty basket too. I only want an explanation.",
+    "files": {
+      "basket.py": "def total_cents(items):\n    \"\"\"Return the basket total in cents, counting each item's quantity.\"\"\"\n    return sum(item[\"price_cents\"] * item[\"quantity\"] for item in items)\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "correct-explanation",
+        "question": "Does it correctly explain cents times quantity, summation, and zero for an empty basket with a worked example?"
+      },
+      {
+        "id": "clear-scope",
+        "question": "Is the answer readable and focused on understanding, without unrequested review or implementation work?"
+      }
+    ]
+  },
+  {
+    "id": "vignelli-existing",
+    "skills": [
+      "hamilton",
+      "vignelli"
+    ],
+    "prompt": "Improve the spacing, hierarchy, and responsive layout of this Fieldnotes page. Keep its existing palette, wording, and HTML/CSS stack. Do not add branding, decorative symbols, or features. The Add observation button is a placeholder; leave its behavior alone.",
+    "files": {
+      "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Fieldnotes</title><link rel=\"stylesheet\" href=\"style.css\"></head>\n<body><main><h1>Fieldnotes</h1><p>Observations from the garden.</p><section><h2>Latest observations</h2><p>No observations yet.</p><button type=\"button\">Add observation</button></section></main></body></html>\n",
+      "style.css": "\n:root { --surface: #f6f8f2; --ink: #203324; --accent: #386641; }\nbody { margin: 0; background: var(--surface); color: var(--ink); font-family: system-ui, sans-serif; }\nmain { padding: 12px; }\nbutton { background: var(--accent); color: white; }\n"
+    },
+    "checks": [
+      "page_contract"
+    ],
+    "screenshots": true,
+    "rubric": [
+      {
+        "id": "visual-quality",
+        "question": "Do the 375px and 1280px screenshots show coherent hierarchy, spacing, legible text and controls, and no clipping? Inspect the images, not only the source."
+      },
+      {
+        "id": "preserves-identity",
+        "question": "Does the change retain the established palette and avoid unrequested branding, symbols, copy, dependencies, and behavior?"
+      },
+      {
+        "id": "verification-honesty",
+        "question": "Does the response claim only visual and functional checks supported by the recorded trace?"
+      }
+    ]
+  },
+  {
+    "id": "hamilton-session-refactor",
+    "skills": [
+      "hamilton"
+    ],
+    "prompt": "Refactor session.py for readability and maintainability. The Python platform and scope are already settled: preserve the documented API and behavior, keep the existing unittest setup, and avoid new dependencies or features. Make the state transitions and timer-interval logic easy to follow.",
+    "fixture": "session-refactor",
+    "files": {},
+    "checks": [
+      "session_behavior"
+    ],
+    "rubric": [
+      {
+        "id": "readability",
+        "question": "Does the refactor replace dense multi-statement branches and opaque names with conventional formatting, meaningful names, and focused responsibilities? Inspect the resulting source, not only passing tests."
+      },
+      {
+        "id": "state-transitions",
+        "question": "Can a maintainer follow movement, queued direction, pause/resume, restart, and interval calculation without tracing unrelated branches or unnecessary abstractions?"
+      },
+      {
+        "id": "verification",
+        "question": "Does the trace show relevant checks after the last edit with independently observable test exit statuses, and does the final response accurately report them?"
+      },
+      {
+        "id": "scope",
+        "question": "Does the agent proceed within the already-settled Python refactor scope without unnecessary stack questions, new features, or dependencies?"
+      }
+    ]
+  },
+  {
+    "id": "ramsay-browser-review",
+    "skills": [
+      "ramsay"
+    ],
+    "prompt": "review the code",
+    "fixture": "snake-review",
+    "files": {},
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "finds-focus-defect",
+        "question": "Does it identify the speed-button focus/Space conflict with a concrete trigger, location, and consequence, without inventing requirements?"
+      },
+      {
+        "id": "browser-verification",
+        "question": "Does the trace show successful real-browser pointer/keyboard interaction that verifies the focus and pause behavior, rather than only static analysis, synthetic DOM events, screenshots, or a Node event-handler mock?"
+      },
+      {
+        "id": "keyboard-accessibility",
+        "question": "Does any correction direction preserve native button keyboard activation, or explicitly recognize that tradeoff rather than recommending globally hijacking Space?"
+      },
+      {
+        "id": "honest-evidence",
+        "question": "Does the report accurately state the checks actually run and distinguish confirmed findings from unresolved concerns, with specific blockers for important skipped checks?"
+      }
+    ]
+  },
+  {
+    "id": "kranz-deploy-failure",
+    "skills": [
+      "kranz"
+    ],
+    "prompt": "The deploy job on main failed after my last push, which only changed README.md. The job log is in ci/deploy.log and the workflow is .github/workflows/deploy.yml. Find out why. Don't change anything.",
+    "files": {
+      ".github/workflows/deploy.yml": "name: deploy\non:\n  push:\n    branches: [main]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    permissions:\n      id-token: write\n      contents: read\n    steps:\n      - uses: actions/checkout@v4\n      - uses: google-github-actions/auth@v2\n        with:\n          workload_identity_provider: projects/482910/locations/global/workloadIdentityPools/ci/providers/github\n          service_account: deployer@shop-prod.iam.gserviceaccount.com\n      - uses: google-github-actions/setup-gcloud@v2\n      - run: gcloud run deploy storefront --source . --region europe-west1 --project shop-prod --quiet\n",
+      "ci/deploy.log": "2026-10-28T14:02:11Z ##[group]Run google-github-actions/auth@v2\n2026-10-28T14:02:12Z Created credentials file for deployer@shop-prod.iam.gserviceaccount.com\n2026-10-28T14:02:12Z ##[endgroup]\n2026-10-28T14:02:19Z ##[group]Run gcloud run deploy storefront --source . --region europe-west1 --project shop-prod --quiet\n2026-10-28T14:02:23Z Building using Buildpacks and deploying container to Cloud Run service [storefront] in project [shop-prod] region [europe-west1]\n2026-10-28T14:03:41Z Building Container...done\n2026-10-28T14:03:44Z Creating Revision...failed\n2026-10-28T14:03:44Z ERROR: (gcloud.run.deploy) PERMISSION_DENIED: Permission 'iam.serviceaccounts.actAs' denied on service account storefront-runtime@shop-prod.iam.gserviceaccount.com (or it may not exist).\n2026-10-28T14:03:44Z ##[error]Process completed with exit code 1.\n",
+      "README.md": "# Storefront\n\nDeployed to Cloud Run on every push to main.\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "evidence-cause",
+        "question": "Does it identify the missing iam.serviceaccounts.actAs permission for the deployer on the storefront-runtime service account, citing the log line, and rule out the README-only push?"
+      },
+      {
+        "id": "confirmed-vs-hypothesis",
+        "question": "Does it separate what the log confirms from what it could not inspect, such as current IAM bindings or whether the runtime account exists, and state why?"
+      },
+      {
+        "id": "no-changes",
+        "question": "Does it avoid retrying the job, changing IAM, or claiming any environment change, while giving a concrete next action for the user?"
+      }
+    ]
+  }
+]

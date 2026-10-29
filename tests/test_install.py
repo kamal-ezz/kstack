@@ -65,8 +65,8 @@ class InstallerTests(unittest.TestCase):
             for skill in SKILLS:
                 self.assertTrue((destination / skill).is_symlink())
                 self.assertEqual((destination / skill).resolve(), COLLECTION / skill)
-            self.assertEqual((destination / 'davinci/LICENSE.txt').read_bytes(),
-                             (COLLECTION / 'davinci/LICENSE.txt').read_bytes())
+            self.assertEqual((destination / 'vignelli/LICENSE.txt').read_bytes(),
+                             (COLLECTION / 'vignelli/LICENSE.txt').read_bytes())
         result = self.run_installer()
         self.assertEqual(result.returncode, 0, result.stderr)
         for client in ('codex', 'claude'):
@@ -79,30 +79,30 @@ class InstallerTests(unittest.TestCase):
         self.env['CLAUDE_CONFIG_DIR'] = str(self.root / 'custom claude')
         result = self.run_installer('--target', 'codex')
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertTrue((self.root / 'custom codex/skills/ritchie').is_symlink())
+        self.assertTrue((self.root / 'custom codex/skills/hamilton').is_symlink())
         self.assertFalse((self.root / 'custom claude').exists())
         result = self.run_installer('--target', 'claude')
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertTrue((self.root / 'custom claude/skills/ritchie').is_symlink())
+        self.assertTrue((self.root / 'custom claude/skills/hamilton').is_symlink())
 
     def test_backs_up_copies_wrong_links_and_broken_links(self):
         self.client('codex')
         skills = self.root / '.codex/skills'
-        (skills / 'ritchie').mkdir(parents=True)
-        (skills / 'ritchie/local.txt').write_text('old copy')
+        (skills / 'hamilton').mkdir(parents=True)
+        (skills / 'hamilton/local.txt').write_text('old copy')
         outside = self.root / 'original skill'
         outside.mkdir()
         (outside / 'keep.txt').write_text('keep')
         (skills / 'linus').symlink_to(outside, target_is_directory=True)
-        (skills / 'davinci').symlink_to(self.root / 'missing')
+        (skills / 'vignelli').symlink_to(self.root / 'missing')
         result = self.run_installer()
         self.assertEqual(result.returncode, 0, result.stderr)
         backups = self.root / '.codex/skill-backups'
-        self.assertEqual(next(backups.glob('*/ritchie/local.txt')).read_text(), 'old copy')
+        self.assertEqual(next(backups.glob('*/hamilton/local.txt')).read_text(), 'old copy')
         self.assertTrue(next(backups.glob('*/linus')).is_symlink())
-        self.assertTrue(next(backups.glob('*/davinci')).is_symlink())
+        self.assertTrue(next(backups.glob('*/vignelli')).is_symlink())
         self.assertEqual((outside / 'keep.txt').read_text(), 'keep')
-        for skill in ('ritchie', 'linus', 'davinci'):
+        for skill in ('hamilton', 'linus', 'vignelli'):
             self.assertEqual((skills / skill).resolve(), COLLECTION / skill)
 
     def test_source_edits_are_visible_without_rerunning(self):

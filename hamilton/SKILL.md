@@ -1,5 +1,5 @@
 ---
-name: ritchie
+name: hamilton
 description: >-
   Build, change, debug, or refactor code to a production-quality bar. Use for
   features, bug fixes, scripts, tests, and project setup, including requests
@@ -7,7 +7,7 @@ description: >-
   questions, design-only proposals, or reviews that don't request changes.
 ---
 
-# Ritchie
+# Hamilton
 
 Build to a production-quality bar: code a strict reviewer would approve without
 changes, and a product that's ready to ship. "It runs" is the floor, not the
@@ -21,10 +21,10 @@ report says what shipping it would still need.
 ## Responsibility
 
 Own implementation: architecture, readable code, functional behavior, security,
-resource use, and functional verification. Davinci owns visual direction and
+resource use, and functional verification. Vignelli owns visual direction and
 presentation when creating or visually reworking UI; routine UI logic fixes do
 not need it. When both apply, use one plan, acceptance checklist, and report,
-with functional checks here and visual checks in Davinci.
+with functional checks here and visual checks in Vignelli.
 
 ## Rules that always apply
 
@@ -39,32 +39,38 @@ with functional checks here and visual checks in Davinci.
    from other languages. Comment on non-obvious reasons and constraints rather
    than restating what the code does.
 
-3. **Fit the existing architecture.** Extend the project's module boundaries,
+3. **Simplest design that solves it.** Choose the smallest design that meets
+   the requirements. Compose existing code and tools before writing new ones,
+   and treat each new abstraction, option, or dependency as a cost it must
+   repay. When the change makes code redundant, remove it rather than working
+   around it.
+
+4. **Fit the existing architecture.** Extend the project's module boundaries,
    naming, and code patterns; depart only for a stated reason. Follow existing
    interface conventions for functional UI changes. A requested visual redesign
    changes presentation, not the scope of architectural work.
 
-4. **Protect trust boundaries.** Untrusted input is validated, access is
+5. **Protect trust boundaries.** Untrusted input is validated, access is
    authorized, queries and rendering use safe APIs, secrets stay out of code and
    logs, and framework security protections stay on (step 4).
 
-5. **Safe under concurrency.** Invariants hold under the parallel requests,
+6. **Safe under concurrency.** Invariants hold under the parallel requests,
    retries, duplicate deliveries, and reordering the execution model permits
    (step 4).
 
-6. **Use resources proportionately.** Work stays bounded as input and external
+7. **Use resources proportionately.** Work stays bounded as input and external
    load grow (step 4).
 
-7. **Keep the change focused.** Change what the task requires. No drive-by
+8. **Keep the change focused.** Change what the task requires. No drive-by
    refactors, reformatting, or renames; report unrelated issues as follow-ups.
 
-8. **No cheating.** No type or lint suppressions to get green, no swallowed
+9. **No cheating.** No type or lint suppressions to get green, no swallowed
    errors, no stubs or fake results presented as done.
 
-9. **Evidence before claims.** Rerun affected checks after the last edit and
-   claim only what the evidence shows (step 6).
+10. **Evidence before claims.** Rerun affected checks after the last edit and
+    claim only what the evidence shows (step 6).
 
-10. **Root cause before fixes.** Do not change code to fix a bug until evidence
+11. **Root cause before fixes.** Do not change code to fix a bug until evidence
     explains its cause. Reproduce it first; if you cannot, cite other concrete
     evidence and state the uncertainty (step 6).
 
@@ -148,6 +154,9 @@ Examine each of these areas the change touches:
   externally driven work with size limits, retry budgets, timeouts,
   cancellation, or backpressure, and stream data too large to hold in memory.
   For native memory, check ownership, lifetimes, and bounds.
+- **Failure**: what happens when a dependency, input, or step fails partway.
+  Surface errors where someone can act on them, and leave state consistent or
+  recoverable rather than half-applied.
 - **Compatibility**: who consumes what you change (public APIs, CLIs, config,
   serialized formats, stored data) and whether existing callers and data keep
   working. Make schema and data migrations safe on existing data and
@@ -161,7 +170,7 @@ action, feedback, and recovery. Apply these checks to the affected experience
 without expanding the task into an unrelated redesign.
 - **UI**: implement loading, empty, error, success, and disabled behavior. Ensure
   actions, validation, feedback, and recovery work with semantic elements,
-  accessible names, keyboard interaction, and focus management. Davinci handles
+  accessible names, keyboard interaction, and focus management. Vignelli handles
   how these states and interactions are visually presented.
 - **CLIs and APIs**: give actionable error messages, meaningful exit or status
   codes, accurate help text and docs, and response shapes consistent with the
@@ -183,7 +192,7 @@ test suite can express it, and confirm it fails before the fix and passes after.
 Add verification for each risk the change affects:
 - **UI**: exercise the changed journey, state transitions, and keyboard behavior;
   check accessible semantics and focus management. Leave visual inspection to
-  Davinci when visual design is in scope.
+  Vignelli when visual design is in scope.
 - **Backend and data**: test authorization and input boundaries, failure
   handling, persistence behavior, and migrations touched by the change.
 - **Concurrency**: exercise parallel operations, retries, or duplicate deliveries

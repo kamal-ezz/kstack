@@ -1,5 +1,5 @@
 ---
-name: davinci
+name: vignelli
 description: >-
   Design and build distinctive, usable frontend interfaces. Use when creating or
   visually reworking websites, landing pages, dashboards, app screens, or
@@ -9,11 +9,12 @@ description: >-
 license: Apache-2.0
 ---
 
-# Davinci
+# Vignelli
 
 Create an interface with a clear visual point of view and a complete user journey.
 Make the design specific to the brief, with usability carrying as much weight as
-appearance. Distinctiveness comes from deliberate choices, not extra decoration.
+appearance. Distinctiveness comes from deliberate choices, not extra decoration:
+a few typefaces, a consistent scale, and a grid that holds the layout together.
 
 Adapted and modified from Anthropic's
 [frontend-design skill](https://github.com/anthropics/skills/tree/main/skills/frontend-design).
@@ -23,7 +24,7 @@ revision and modification details are in [NOTICE.txt](NOTICE.txt).
 ## Responsibility
 
 Own visual direction and presentation: composition, typography, color, spacing,
-responsive layout, motion, imagery, and interface copy. For code changes, Ritchie
+responsive layout, motion, imagery, and interface copy. For code changes, Hamilton
 owns architecture, implementation quality, state logic, semantic and keyboard
 accessibility, and functional checks. Apply this skill's visual decisions within that workflow;
 do not duplicate the engineering plan, functional checks, or report. A design-only
@@ -34,7 +35,7 @@ proposal does not require implementation.
 Start visual direction after consequential product decisions are settled: target
 platform, audience, and primary task. When these are unresolved, clarify the
 choices that affect the design with a recommendation and wait before choosing
-a visual treatment. Follow Ritchie's scope decisions on joint tasks; do not invent
+a visual treatment. Follow Hamilton's scope decisions on joint tasks; do not invent
 features or settle an open platform choice through a mockup. Use established
 context without asking again, and choose routine visual details autonomously.
 
@@ -55,8 +56,8 @@ should not inherit the same composition just because both run in a browser.
 
 ## Choose a direction before building
 
-For meaningful design work, form a compact plan: palette and roles, type and scale,
-layout and alignment, visual focal point, and interaction behavior. Reuse existing
+For meaningful design work, form a compact plan: palette and roles, type scale,
+spacing scale and grid, visual focal point, and interaction behavior. Reuse existing
 tokens where appropriate. Scale this to the task; changing a component does not
 require a new identity system or a separate approval round.
 
@@ -71,7 +72,8 @@ Choose one defining visual idea and let supporting elements stay restrained.
   On a landing page, let the opening express what is characteristic of its subject;
   inside an application, prioritize the task rather than adding a marketing hero.
 - **Typography**: choose families and weights for a reason, with readable body
-  text and a coherent scale. One family can be enough. Tune line length, leading,
+  text. Set sizes from the project's existing steps or one consistent ratio
+  rather than picking each size by eye. One family can be enough. Tune line length, leading,
   and spacing for the content and viewport. Avoid collecting fonts for novelty.
 - **Color**: define clear roles for surfaces, text, emphasis, and status. Meet
   WCAG AA contrast: 4.5:1 for body text, and 3:1 for large text, UI components,
@@ -79,6 +81,10 @@ Choose one defining visual idea and let supporting elements stay restrained.
   compete. Preserve established brand colors when working inside a product. Work
   within the product's existing themes; when it supports dark mode, design and
   check both.
+- **Grid and proportion**: derive spacing from one base unit and lay content
+  on a defined grid of columns, gutters, and margins that adapts across
+  viewports. Reuse existing tokens when present. Align edges and baselines to
+  it, and break it only deliberately, for emphasis.
 - **Structure**: borders, labels, dividers, and numbering should explain content.
   Use numbering for a real sequence. Use cards for meaningful groups rather than
   wrapping every piece of content in identical containers.
@@ -116,7 +122,7 @@ unrelated behavior. Implement only when requested; otherwise deliver the proposa
 Design the presentation of the functional states: loading, empty, error, success,
 and disabled. Make focus visible, controls distinguishable, and layouts usable
 across viewports without hiding essential content or actions. Make touch targets
-at least 24×24 CSS pixels, and about 44 for primary touch controls. Ritchie covers
+at least 24×24 CSS pixels, and about 44 for primary touch controls. Hamilton covers
 state logic, semantic elements, keyboard behavior, and functional verification.
 
 Keep the interface fast. Load only the font weights you use, with `font-display`
@@ -140,5 +146,5 @@ corrections and recheck affected behavior rather than repeatedly redesigning
 without evidence.
 
 Include the design decisions, visual checks, and unverified presentation details
-in the task's report. Visual inspection does not replace Ritchie's functional checks
+in the task's report. Visual inspection does not replace Hamilton's functional checks
 or expand publishing permission.

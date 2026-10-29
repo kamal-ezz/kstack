@@ -1,9 +1,10 @@
 # Personal skills
 
-- **ritchie** — implementation and functional verification
-- **davinci** — frontend visual design
+- **hamilton** — implementation and functional verification
+- **vignelli** — frontend visual design
 - **ramsay** — code review
 - **linus** — Git and pull request operations
+- **kranz** — infrastructure investigation and operations
 - **feynman** — technical explanations
 
 ## Install
@@ -37,3 +38,9 @@ client may need a fresh session to reload skill instructions.
 Keep this checkout in place. Rerun the installer after moving it or adding a new
 skill. If you delete a source skill, remove its installed links as well. Editing
 through an installed link also edits this checkout.
+
+## Test skill behavior
+
+See [evals/README.md](evals/README.md) for the Codex-only Docker test environment:
+realistic scenarios, frozen skill inputs, no-skill baselines, transcripts, isolated
+behavioral checks, frontend screenshots, and evidence-based review rubrics.

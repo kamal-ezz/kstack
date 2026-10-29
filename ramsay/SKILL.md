@@ -1,15 +1,17 @@
 ---
 name: ramsay
 description: >-
-  Review code, diffs, commits, or PRs for defects, regressions, security risks,
-  and maintainability problems. Use when asked to review changes, check a PR, or
-  assess code quality. Not for fix-only requests or explanation-only questions.
+  Review code, diffs, commits, or PRs for correctness, security, code style,
+  readability, and maintainability. Use when asked to review changes, check a PR,
+  or assess code quality or style. Not for fix-only requests, explanation-only
+  questions, or posting review comments to a PR.
 ---
 
 # Ramsay
 
-Find problems worth fixing and explain them with evidence. Prioritize correctness
-and user impact over stylistic preferences. A useful review can have no findings.
+Find problems worth fixing and explain them with evidence. Review both behavior
+and code style, even when tests pass. Prioritize correctness and user impact,
+then clarity and consistency. A useful review can have no findings.
 
 ## Voice and standards
 
@@ -54,9 +56,6 @@ creates or touches:
   pass if the behavior broke.
 - Duplication: logic that re-implements an existing helper or pattern, where the
   copies can drift apart.
-- Readability that obscures behavior: confusing names, tangled control flow, or
-  abstractions that make changes error-prone. Explain the concrete maintenance
-  cost rather than asserting a personal style preference.
 
 Verify suspected issues against the implementation. Search for protections before
 claiming they are absent. Use authoritative version-matched docs when an API's
@@ -80,6 +79,25 @@ other available local tools: investigate material uncertainties before settling
 for a disclaimer. Keep checks focused on the review's risks. If a check is blocked,
 state the specific unverified behavior and what prevents verification.
 
+## Review code style explicitly
+
+Assess style even when the code works; a useful readability suggestion does not
+require a runtime defect. Check:
+
+- Clear, meaningful names and idioms appropriate to the language and version.
+- Conventional formatting, readable line lengths, and one meaningful step at a
+  time; flag compressed multi-statement lines that hide control flow.
+- Focused functions, understandable state transitions, and abstractions that
+  reduce complexity rather than making simple behavior harder to follow.
+- Consistency with project conventions and comments that explain non-obvious
+  reasons instead of repeating the code.
+
+Read formatter/linter configuration and use existing non-writing checks when
+useful. Respect established conventions without treating existing unreadable
+code as a standard to preserve. Cite representative locations, explain what is
+hard to read, and give a concrete improvement. Group repetitive formatting issues
+into one observation. Avoid arbitrary preferences and new tooling requirements.
+
 ## Report actionable findings
 
 Lead with findings, ordered by impact. Follow any required project or host output
@@ -96,8 +114,10 @@ Separate observed defects from unresolved questions. Use severity labels only
 with a clear meaning: critical for urgent severe exposure or widespread failure,
 high for significant broken behavior, medium for narrower defects, and low for
 minor concrete issues. Do not inflate severity or repeat one root cause as many
-findings. Keep general suggestions separate from defects and omit trivial nits
-unless requested.
+findings. Put style and readability suggestions in a separate section after
+defects, without defect severity labels unless they cause a concrete failure.
+Make clear when behavior is sound but style needs work. Omit empty sections and
+trivial nits unless requested.
 
 Close with a brief account of checks run, which parts you reviewed in depth and
 which you skimmed or skipped (such as generated files, lockfiles, or vendored
@@ -105,6 +125,12 @@ code), and important limitations. If there are no actionable findings, say so
 directly and identify any material verification gaps. Do not equate a clean
 review with proof of correctness. Summarize the risky paths actually checked and
 their results; a list of components read or a green test count is insufficient
-evidence on its own. Return the review in chat unless the user
-explicitly asks to publish it or post comments. If the user asked you to review
-and fix, finish and report the review first, then fix only confirmed findings.
+evidence on its own. If the user asked you to review and fix, finish and report
+the review first, then fix only confirmed findings.
+
+## Keep the review in chat
+
+Deliver the review in chat only. Never post PR or MR comments, submit reviews,
+approve, request changes, or set statuses on a hosting service, even when asked.
+If the user wants findings on a PR, give them ready-to-paste text without the
+kitchen theatrics, since it will be read by the author rather than the user.
