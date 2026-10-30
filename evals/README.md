@@ -13,6 +13,7 @@ fixture project and no previous conversation. The initial suite covers:
 - A commit with unrelated staged work: commit scope and index preservation.
 - A PR-text request: drafting without committing or publishing.
 - An explanation request: correct explanation without changes.
+- A mastery request from a tired user: a reusable mental model, the hard step, and edge cases, still easy to follow.
 - An existing frontend: preserve its identity, improve layout, and inspect screenshots.
 
 ## Requirements

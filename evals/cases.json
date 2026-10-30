@@ -176,6 +176,33 @@
     ]
   },
   {
+    "id": "feynman-mastery",
+    "skills": [
+      "feynman"
+    ],
+    "prompt": "I'm wiped out after a long day, but I want to actually master how cache.py works, not just get the gist. Explanation only, please.",
+    "files": {
+      "cache.py": "from collections import OrderedDict\n\n\nclass LRUCache:\n    def __init__(self, capacity):\n        self.capacity = capacity\n        self.items = OrderedDict()\n\n    def get(self, key):\n        if key not in self.items:\n            return None\n        self.items.move_to_end(key)\n        return self.items[key]\n\n    def put(self, key, value):\n        self.items[key] = value\n        self.items.move_to_end(key)\n        if len(self.items) > self.capacity:\n            self.items.popitem(last=False)\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "correct-model",
+        "question": "Does it correctly explain that the OrderedDict order tracks recency, that get and put both refresh a key, and that put evicts the least recently used key once capacity is exceeded, traced through one worked example?"
+      },
+      {
+        "id": "builds-mastery",
+        "question": "Does it state a core model the reader could reason with, explain why move_to_end in get matters (without it the cache evicts by insertion order), and cover an edge such as updating an existing key or a small capacity?"
+      },
+      {
+        "id": "low-effort",
+        "question": "Is it easy to follow when tired: direct answer first, short steps, one reused example, consistent names, and no unrequested review or implementation work?"
+      }
+    ]
+  },
+  {
     "id": "vignelli-existing",
     "skills": [
       "hamilton",
