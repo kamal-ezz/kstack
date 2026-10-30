@@ -50,7 +50,9 @@ creates or touches:
   boundaries.
 - Shared-state races, retries, duplicate effects, ordering, and cancellation.
 - Persistence changes, compatibility, migrations, and partial failures.
-- Excessive queries, work, or memory as inputs and traffic grow.
+- Excessive queries, work, or memory at relevant input sizes and traffic levels.
+  Establish expected usage from project documentation, configuration, or measured
+  behavior, and state material assumptions behind performance findings.
 - Missing user-facing states, inaccessible interactions, or misleading feedback.
 - Missing or weak tests: changed behavior with no test, or tests that would still
   pass if the behavior broke.
@@ -89,6 +91,9 @@ require a runtime defect. Check:
   time; flag compressed multi-statement lines that hide control flow.
 - Focused functions, understandable state transitions, and abstractions that
   reduce complexity rather than making simple behavior harder to follow.
+- Unnecessary complexity: dead code, unused options, speculative configuration,
+  needless dependencies, or abstractions that add navigation without simplifying
+  understanding. Verify usage and purpose before recommending removal.
 - Consistency with project conventions and comments that explain non-obvious
   reasons instead of repeating the code.
 
@@ -107,8 +112,10 @@ schema. Otherwise, each finding should include:
 - **Problem and trigger**: what fails and under which concrete conditions.
 - **Impact and evidence**: the consequence and the code path, test, or contract
   that supports it.
-- **Direction**: a concise correction when one is clear; avoid implementing it
-  unless requested.
+- **Direction**: the smallest sufficient correction when one is clear. Name the
+  existing helper and its path when suggesting reuse; avoid adding layers or
+  proposing an architectural rewrite for a local defect. Implement only when
+  requested.
 
 Separate observed defects from unresolved questions. Use severity labels only
 with a clear meaning: critical for urgent severe exposure or widespread failure,

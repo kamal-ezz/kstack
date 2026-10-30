@@ -43,7 +43,8 @@ with functional checks here and visual checks in Vignelli.
    the requirements. Compose existing code and tools before writing new ones,
    and treat each new abstraction, option, or dependency as a cost it must
    repay. When the change makes code redundant, remove it rather than working
-   around it.
+   around it. When moving, merging, or deleting code, preserve necessary
+   validation, error handling, and other safeguards.
 
 4. **Fit the existing architecture.** Extend the project's module boundaries,
    naming, and code patterns; depart only for a stated reason. Follow existing
@@ -77,6 +78,12 @@ with functional checks here and visual checks in Vignelli.
 ## Workflow
 
 ### 1. Scope it and define done
+When the brief is ambiguous, establish who the work serves, the outcome they
+need, and what would make the result unsuccessful even if it technically works.
+Use existing context before asking. Distinguish explicit requirements from
+assumptions and agent-selected defaults; label consequential choices you make
+as your proposals or implementation choices, never as user agreement.
+
 For a new project with no established platform or stack, resolve choices that
 materially change the implementation before committing to an approach or writing
 code. For example, a game could run in a browser, terminal, or desktop app. Ask
@@ -100,8 +107,10 @@ Scale planning to uncertainty and impact:
 
 Look facts up yourself. Ask when an unresolved decision materially changes scope,
 behavior, cost, or reversibility and existing instructions do not settle it.
-Do not require another approval merely because a task is nontrivial. State your
-recommendation with any necessary question and continue independent work.
+Ask the highest-impact unresolved question first and explain what its answer
+would change. Offer a concrete recommendation the user can correct when useful,
+and continue independent work. Do not require another approval merely because
+a task is nontrivial.
 
 Define observable acceptance checks proportional to the change, including failure
 cases. Use Given/When/Then or an edge-case matrix only when it clarifies
@@ -116,6 +125,10 @@ state, record the starting commit, and follow its branch and worktree
 conventions. Preserve unrelated uncommitted changes and work around them; ask
 only if they conflict with the requested work. Do not push, rebase, or discard
 changes without authorization.
+
+When changing an interface or behavior, trace its callers, exports, tests,
+fixtures, configuration, and documentation. Update the affected parts so the
+change is complete, including consumers outside the edited module.
 
 Before adding a dependency, check whether the standard library or an existing
 dependency already covers the need. Add one only when it clearly earns its

@@ -45,10 +45,21 @@ constraints. Ask only when a missing decision would materially change the result
 otherwise state a reasonable assumption and proceed. Do not invent a client history,
 brand requirement, or commercial claim to justify a direction.
 
+Choose the visual emphasis for each page or screen's purpose: marketing helps
+people decide and act, tools help them complete tasks, documentation supports
+understanding, and galleries foreground the work. One product can need several
+treatments. In working applications, preserve familiar controls and useful
+information density.
+
 For an existing product, inspect its tokens, typography, components, and interaction
-patterns. Extend that visual language for ordinary additions. Redesign only the
-requested area, and preserve the surrounding identity unless a broader change is
-requested. Explicit user preferences win over stylistic defaults in this skill.
+patterns, alongside rendered screens before editing when permitted tools allow.
+If the app cannot run, use relevant screenshot fixtures or visual regression
+baselines when available. Check that captures match the target page, theme, and
+current implementation; treat stale captures as historical evidence and report
+any resulting uncertainty. Extend the established visual language for ordinary
+additions. Redesign only the requested area, and preserve the surrounding identity
+unless a broader change is requested. Explicit user preferences win over stylistic
+defaults in this skill.
 
 For a new identity or an authorized redesign, derive choices from the subject:
 its materials, culture, purpose, and audience. A scheduling tool and a music archive
@@ -85,6 +96,9 @@ Choose one defining visual idea and let supporting elements stay restrained.
   on a defined grid of columns, gutters, and margins that adapts across
   viewports. Reuse existing tokens when present. Align edges and baselines to
   it, and break it only deliberately, for emphasis.
+  Adapt navigation, columns, tables, and controls to the available space;
+  shrinking text alone does not resolve a cramped layout. Preserve essential
+  information and actions as the structure changes.
 - **Structure**: borders, labels, dividers, and numbering should explain content.
   Use numbering for a real sequence. Use cards for meaningful groups rather than
   wrapping every piece of content in identical containers.
