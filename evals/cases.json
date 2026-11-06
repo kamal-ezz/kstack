@@ -171,7 +171,7 @@
       },
       {
         "id": "clear-scope",
-        "question": "Is the answer readable and focused on understanding, without unrequested review or implementation work?"
+        "question": "Is the answer readable, concise, and proportional to the small function, without forced ceremony, unrequested quiz questions, review, or implementation work?"
       }
     ]
   },
@@ -198,7 +198,61 @@
       },
       {
         "id": "low-effort",
-        "question": "Is it easy to follow when tired: direct answer first, short steps, one reused example, consistent names, and no unrequested review or implementation work?"
+        "question": "Is it easy to follow when tired: direct answer first, short steps, one reused example, consistent names, and no unrequested quiz, review, or implementation work?"
+      }
+    ]
+  },
+  {
+    "id": "feynman-turn-queue",
+    "skills": [
+      "feynman"
+    ],
+    "prompt": "How does player input become snake movement across this project, and why does turn() check queue.at(-1) before state.direction? Walk me through pressing Up then Left before a tick fires. Explanation only.",
+    "fixture": "snake-review",
+    "files": {},
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "traces-project-flow",
+        "question": "Does it trace the real input-to-movement path across index.html, game.js, and engine.js (keyboard, direction buttons, and touch swipes into turn(), the two-slot queue, tick(), and step()) rather than inferring the system from turn() alone?"
+      },
+      {
+        "id": "explains-queue-model",
+        "question": "Does it walk through pressing Up then Left while moving right—showing why checking state.direction before the tick fires would reject Left against Right, while queue.at(-1) validates Left against the pending Up turn and drains across two ticks?"
+      },
+      {
+        "id": "clear-scope",
+        "question": "Is the explanation easy to follow using real project names (with a focused diagram or clear step-by-step trace) and free of unrequested code review, quiz questions, or edits?"
+      }
+    ]
+  },
+  {
+    "id": "feynman-error",
+    "skills": [
+      "feynman"
+    ],
+    "prompt": "collect_events crashed last night with KeyError: 'events' in sync.py, even though most runs finish fine. Walk me through why this happens and how we'd tell for sure what triggered last night's crash. Explanation only; don't edit anything.",
+    "files": {
+      "sync.py": "from client import fetch_page\n\n\ndef collect_events(token):\n    events = []\n    cursor = None\n    while True:\n        page = fetch_page(token, cursor)\n        events.extend(page[\"events\"])\n        cursor = page.get(\"next_cursor\")\n        if not cursor:\n            return events\n",
+      "client.py": "import json\nimport urllib.request\n\nAPI_URL = \"https://events.internal.example/v1/events\"\n\n\ndef fetch_page(token, cursor=None):\n    url = API_URL if cursor is None else f\"{API_URL}?cursor={cursor}\"\n    request = urllib.request.Request(url, headers={\"Authorization\": f\"Bearer {token}\"})\n    with urllib.request.urlopen(request, timeout=10) as response:\n        if response.status == 204:\n            return {}\n        return json.loads(response.read().decode(\"utf-8\"))\n"
+    },
+    "checks": [
+      "unchanged"
+    ],
+    "rubric": [
+      {
+        "id": "traces-mechanism",
+        "question": "Does it trace collect_events in sync.py into fetch_page in client.py and identify that HTTP 204 returns an empty dict {}, causing page['events'] to raise KeyError: 'events'?"
+      },
+      {
+        "id": "confirmed-vs-hypothesis",
+        "question": "Does it separate what the code confirms from what remains unconfirmed without upstream API docs or response logs (such as whether the server returned 204 vs. a 2xx JSON object omitting 'events', and on which page), and explain how to resolve that uncertainty?"
+      },
+      {
+        "id": "explanation-scope",
+        "question": "Does it keep the focus on explaining the failure without editing files or turning the answer into a full implementation or style review?"
       }
     ]
   },

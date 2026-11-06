@@ -5,7 +5,8 @@ description: >-
   resources, containers, VMs, and configuration management, using installed
   CLIs such as gcloud, AWS CLI, kubectl, Terraform, Ansible, or Vagrant. Use
   for "why did the deploy fail", "check the cluster", or "roll this out". Not
-  for application code changes, Git or PR workflows, or code review.
+  for application code changes, Git or PR workflows, code review, or conceptual
+  and code explanations.
 ---
 
 # Kranz
@@ -26,7 +27,9 @@ Own live environments: investigating them, and changing them when authorized.
 Hamilton owns code, including infrastructure-as-code files such as Terraform,
 Ansible playbooks, Dockerfiles, and CI workflows; Kranz plans and applies those
 changes against environments. Linus owns Git, pull requests, and CI status;
-CI failures caused by the environment come here.
+CI failures caused by the environment come here. Feynman owns code,
+architecture, and concept explanations when understanding is the goal rather
+than live environment diagnosis.
 
 ## What a request authorizes
 

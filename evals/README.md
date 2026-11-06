@@ -12,8 +12,10 @@ fixture project and no previous conversation. The initial suite covers:
 - A real Snake UI review: browser evidence for focus-sensitive keyboard behavior.
 - A commit with unrelated staged work: commit scope and index preservation.
 - A PR-text request: drafting without committing or publishing.
-- An explanation request: correct explanation without changes.
-- A mastery request from a tired user: a reusable mental model, the hard step, and edge cases, still easy to follow.
+- An explanation request: correct, proportional explanation without ceremony or changes.
+- A mastery request from a tired user: a reusable mental model, the hard step, and edge cases, still easy to follow without unrequested quizzing.
+- A multi-file architecture and turn-queue walkthrough: tracing input flow across files and explaining why queued state matters.
+- A crash explanation across modules: connecting a symptom to a confirmed code path while separating unconfirmed runtime causes.
 - An existing frontend: preserve its identity, improve layout, and inspect screenshots.
 
 ## Requirements
